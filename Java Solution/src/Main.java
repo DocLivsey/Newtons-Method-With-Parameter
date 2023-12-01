@@ -7,6 +7,6 @@ public class Main {
     public static final String OUTPUT = "\u001B[35m"; // PURPLE
     public static final String HEADER_OUTPUT = "\u001B[36m"; // CYAN
     public static void main(String[] args) {
-
+        
     }
 }
