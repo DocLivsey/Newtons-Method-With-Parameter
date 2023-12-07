@@ -71,7 +71,12 @@ public class Vector {
         return super.equals(obj);
     }
     Vector cloneVector()
-    { return new Vector(this.vector, this.vectorSize); }
+    {
+        Vector cloneVector = new Vector(this.vectorSize);
+        for (int i = 0; i < this.vectorSize; i++)
+            cloneVector.setItem(i, this.getItem(i));
+        return cloneVector;
+    }
     void printVector()
     {
         System.out.print(Main.HEADER_OUTPUT + "\nВектор размерностью " + vectorSize + Main.OUTPUT + ": \n { ");
@@ -242,6 +247,13 @@ public class Vector {
         for (double i : this.vector)
             if (i == item) return true;
         return false;
+    }
+    Matrix vectorToMatrix()
+    {
+        double[][] convertMatrix = new double[this.vectorSize][1];
+        for (int i = 0; i < this.vectorSize; i++)
+            convertMatrix[i][0] = this.getItem(i);
+        return new Matrix(convertMatrix, this.vectorSize, 1);
     }
     void sort()
     { Arrays.sort(this.vector); }

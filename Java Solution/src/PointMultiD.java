@@ -13,9 +13,8 @@ public class PointMultiD {
     { this.x = x; this.y = y; }
     PointMultiD()
     {
-        Scanner scanner = new Scanner(System.in);
         this.x = new Vector();
-        this.y = scanner.nextDouble();
+        this.y = Double.NaN;
     }
     public Vector getVectorX()
     { return x; }
@@ -35,9 +34,13 @@ public class PointMultiD {
     @Override
     public boolean equals(Object obj)
     { return super.equals(obj); }
-    @Override
-    protected PointMultiD clone() throws CloneNotSupportedException
-    { return (PointMultiD) super.clone(); }
+    public PointMultiD clonePoint()
+    {
+        PointMultiD clonePoint = new PointMultiD();
+        clonePoint.setVectorX(this.getVectorX());
+        clonePoint.setY(this.getY());
+        return clonePoint;
+    }
     public void setPointFromString(String pointStr, int pointDimension)
     {
         String[] splitPoint = pointStr.trim().split("\\s+");
