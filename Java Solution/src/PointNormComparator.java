@@ -8,14 +8,6 @@ public class PointNormComparator implements Comparator<PointMultiD> {
             System.out.println(Main.ERROR + "Размерность точек разная" + Main.RESET);
             return 0;
         }
-        double norm1 = 0, norm2 = 0;
-        for (int i = 0; i < point1.getVectorX().getVectorSize(); i++)
-        {
-            norm1 += point1.getX(i) * point1.getX(i);
-            norm2 += point2.getX(i) * point2.getX(i);
-        }
-        norm1 = Math.sqrt(norm1);
-        norm2 = Math.sqrt(norm2);
-        return (int) (norm1 - norm2);
+        return Double.compare(point1.getVectorX().ChebyshevNorm(), point2.getVectorX().ChebyshevNorm());
     }
 }

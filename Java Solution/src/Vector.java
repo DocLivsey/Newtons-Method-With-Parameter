@@ -25,6 +25,8 @@ public class Vector {
     {
         this.vectorSize = vectorSize;
         this.vector = new double[vectorSize];
+        for (int i = 0; i < this.vectorSize; i++)
+            this.setItem(i, Double.NaN);
     }
     Vector()
     {
@@ -255,6 +257,21 @@ public class Vector {
             convertMatrix[i][0] = this.getItem(i);
         return new Matrix(convertMatrix, this.vectorSize, 1);
     }
+    double ChebyshevNorm()
+    {
+        double result = 0;
+        for (double i : this.vector)
+            result = Math.max(Math.abs(i), Math.abs(result));
+        return result;
+    }
     void sort()
     { Arrays.sort(this.vector); }
+    public boolean isZeroVector()
+    {
+        MathBase base = new MathBase();
+        for (double item : this.vector)
+            if (item != 0 && Math.abs(item) > base.getEpsilon())
+                return false;
+        return true;
+    }
 }

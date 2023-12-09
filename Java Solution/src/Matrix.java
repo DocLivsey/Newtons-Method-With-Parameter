@@ -512,7 +512,6 @@ public class Matrix {
                     for (int j = 0; j < this.columnsCount; j++)
                     {
                         Matrix minor = this.setMinor(i, j);
-                        minor.printMatrix();
                         double minorDet = minor.calculateDeterminant() * Math.pow(-1, (i + j));
                         inversiveMatrix.setItem(i, j, minorDet);
                     }
@@ -528,7 +527,7 @@ public class Matrix {
         for (double[] row : this.matrix)
             for (double item : row)
                 if (Double.isNaN(item))
-                    return false;
-        return true;
+                    return true;
+        return false;
     }
 }

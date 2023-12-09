@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class Main {
     public static final String RESET = "\u001B[0m";
@@ -12,11 +13,7 @@ public class Main {
         String pathToPoints = "src/pointsInput.txt";
         String pathToInitSolutions = "src/initSolutionsInput.txt";
 
-        MathImplicitFunction functionMV1 =
-                (x) -> new PointMultiD(x, x.getItem(0) * x.getItem(0) - x.getItem(1) * x.getItem(1));
-        MathImplicitFunction functionMV2 = (x) -> new PointMultiD(x,  - x.getItem(0) * x.getItem(0) + x.getItem(1));
-
-        EquationsSystemSolving system = new EquationsSystemSolving(pathToPoints, pathToInitSolutions, functionMV1, functionMV2);
-        system.newtonsIterativeCalculate(1);
+        EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.thirdExample(pathToPoints));
+        systemSolving.newtonsMethod(1);
     }
 }

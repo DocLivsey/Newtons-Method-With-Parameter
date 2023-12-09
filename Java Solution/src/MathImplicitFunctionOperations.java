@@ -99,4 +99,6 @@ public class MathImplicitFunctionOperations extends MathBase {
             dy = this.calculatePoint(dx).getY() - point.getY();
         return dy / super.getEpsilon();
     }
+    public double fullDifferential()
+    { return 0; }
 }
