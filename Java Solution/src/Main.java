@@ -13,7 +13,7 @@ public class Main {
         String pathToPoints = "src/pointsInput.txt";
         String pathToInitSolutions = "src/initSolutionsInput.txt";
 
-        EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.thirdExample(pathToPoints));
-        systemSolving.newtonsMethod(1);
+        EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.sixthExample(pathToPoints));
+        systemSolving.newtonsMethod(0.7);
     }
 }

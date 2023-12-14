@@ -21,12 +21,42 @@ public final class EquationsSystemExamples {
     }
     public static EquationsSystem thirdExample(String pathToPoints) throws FileNotFoundException
     {
-        // y - arcsinx
-        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, x.getItem(1) - Math.asin(x.getItem(0)));
-        // y - sinx
-        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, x.getItem(1) - Math.sin(x.getItem(0)));
+        // x^2 - y = 0
+        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, Math.pow(x.getItem(0), 2) - x.getItem(1));
+        // x - y^2 = 0
+        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, x.getItem(0) - Math.pow(x.getItem(1), 2));
         return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
     }
     public static EquationsSystem fourthExample(String pathToPoints) throws FileNotFoundException
-    {return null;}
+    {
+        // e^x - y = 0
+        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, Math.exp(x.getItem(0)) - x.getItem(1));
+        // e^y + x^3 = 0
+        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, Math.exp(x.getItem(1)) + Math.pow(x.getItem(0), 3));
+        return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
+    }
+    public static EquationsSystem fifthExample(String pathToPoints) throws FileNotFoundException
+    {
+        // x^2 - y = 0
+        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, Math.pow(x.getItem(0), 2) - x.getItem(1));
+        // x^2 + y^2 - 2 = 0
+        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, Math.pow(x.getItem(0), 2) + Math.pow(x.getItem(1), 2) - 2);
+        return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
+    }
+    public static EquationsSystem sixthExample(String pathToPoints) throws FileNotFoundException
+    {
+        // 0,1x^2 + x + 0,2y^2 - 0,3 = 0
+        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, Math.cos(x.getItem(0)) - x.getItem(1));
+        // 0,2x^2 + y - 0,1xy - 0,7 = 0
+        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, -Math.sin(x.getItem(0)) + x.getItem(1));
+        return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
+    }
+    public static EquationsSystem seventhExample(String pathToPoints) throws FileNotFoundException
+    {
+        // 0,1x^2 + x + 0,2y^2 - 0,3 = 0
+        MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, 0.1 * Math.pow(x.getItem(0), 2) + x.getItem(0) + 0.2 * Math.pow(x.getItem(1), 2) - 0.3);
+        // 0,2x^2 + y - 0,1xy - 0,7 = 0
+        MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, 0.2 * Math.pow(x.getItem(0), 2) + x.getItem(1) - 0.1 * x.getItem(0) * x.getItem(1) - 0.7);
+        return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
+    }
 }
