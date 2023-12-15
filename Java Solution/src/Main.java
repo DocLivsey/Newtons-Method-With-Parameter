@@ -1,5 +1,5 @@
-import java.io.FileNotFoundException;
-import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     public static final String RESET = "\u001B[0m";
@@ -16,4 +16,7 @@ public class Main {
         EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.sixthExample(pathToPoints));
         systemSolving.newtonsMethod(0.7);
     }
+
+    // create MathPackage
+    // make up the UI for actions with math operations include linear programming
 }

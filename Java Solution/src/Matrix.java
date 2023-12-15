@@ -530,4 +530,6 @@ public class Matrix {
                     return true;
         return false;
     }
+    public boolean isMatrixSingular()
+    { return this.calculateDeterminant() == 0; }
 }
