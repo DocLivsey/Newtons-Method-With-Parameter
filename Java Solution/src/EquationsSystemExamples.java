@@ -45,9 +45,9 @@ public final class EquationsSystemExamples {
     }
     public static EquationsSystem sixthExample(String pathToPoints) throws FileNotFoundException
     {
-        // 0,1x^2 + x + 0,2y^2 - 0,3 = 0
+        //
         MathImplicitFunction firstFunction = (x) -> new PointMultiD(x, Math.cos(x.getItem(0)) - x.getItem(1));
-        // 0,2x^2 + y - 0,1xy - 0,7 = 0
+        //
         MathImplicitFunction secondFunction = (x) -> new PointMultiD(x, -Math.sin(x.getItem(0)) + x.getItem(1));
         return new EquationsSystem(pathToPoints, firstFunction, secondFunction);
     }

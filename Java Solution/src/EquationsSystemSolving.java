@@ -127,57 +127,41 @@ public class EquationsSystemSolving extends MathBase {
     {
         Vector ksi = currentApproximation.cloneVector();
         Vector y = this.equationsSystem.calculateValuesVector(ksi);
-        System.out.print("x = " + ksi); ksi.printVector();
-        System.out.print("y = " + y); y.printVector();
         Vector JxF = jacobianMatrix.matrixAndVectorMultiplication(y).constantMultiplication(parameter);
-        jacobianMatrix.printMatrix();
-        System.out.print("JxF = " + JxF); JxF.printVector();
         ksi = currentApproximation.vectorDifference(JxF);
-        ksi.printVector();
         return ksi;
     }
     public void newtonsMethod(double parameter)
     {
         for (Vector initApproximation : this.initApproximations)
         {
-            System.out.println("init approximation");
+            System.out.println(Main.CHOOSE + "init approximation" + Main.RESET);
             System.out.println(Arrays.toString(initApproximation.getVector()));
             int it = 0;
             Vector currentApproximation = initApproximation.cloneVector();
             Vector newApproximation, solution, deltaApproximation;
             solution = currentApproximation.cloneVector();
+            boolean isSingular = false;
             do {
-                it++; System.out.println("Iteration " + it);
-
-                System.out.println("solution in cycle:");
-                solution.printVector();
+                it++;
                 Matrix jacobianMatrix = this.setJacobianMatrix(currentApproximation);
-                System.out.println("Jacobian:");jacobianMatrix.printMatrix();
                 jacobianMatrix = jacobianMatrix.inversion();
-                System.out.println("Inversion Jacobian:");jacobianMatrix.printMatrix();
                 if (jacobianMatrix.isNanMatrix())
                 {
                     System.out.println(Main.HEADER_OUTPUT + "Текущее приближение:" + Main.RESET); currentApproximation.printVector();
                     System.out.println(Main.ERROR + "Для текущего приближения Якобиан вырожден \nПопробуйте изменить начальное приближение" + Main.RESET);
-                    it = 5000;
+                    isSingular = true;
                 }
                 else
                 {
                     newApproximation = this.newtonsIterativeCalculate(parameter, currentApproximation, jacobianMatrix);
                     currentApproximation = newApproximation.cloneVector();
-                    System.out.println("in main method");
-                    currentApproximation.printVector();
                 }
                 deltaApproximation = currentApproximation.cloneVector().vectorDifference(solution);
-                System.out.print("delta:"); deltaApproximation.printVector();
-                currentApproximation.printVector();
-                System.out.println("zero");
-                this.equationsSystem.calculateValuesVector(currentApproximation).printVector();
-                System.out.println(this.equationsSystem.calculateValuesVector(currentApproximation).isZeroVector());
                 solution = currentApproximation.cloneVector();
-            } while (it < 5000 && deltaApproximation.ChebyshevNorm() >= super.getEpsilon() && !this.equationsSystem.calculateValuesVector(currentApproximation).isZeroVector());
-            System.out.print("solution:"); solution.printVector(); this.equationsSystem.calculateValuesVector(solution).printVector();
-            System.out.println("count of iterations " + it);
+            } while (!isSingular && it < 5000 && deltaApproximation.ChebyshevNorm() >= super.getEpsilon() && !this.equationsSystem.calculateValuesVector(currentApproximation).isZeroVector());
+            System.out.print(Main.ERROR + "solution:" + Main.RESET); solution.printVector(); this.equationsSystem.calculateValuesVector(solution).printVector();
+            System.out.println(Main.COMMENT + "count of iterations " + it + "\n" + Main.RESET);
         }
     }
 }

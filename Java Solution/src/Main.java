@@ -13,10 +13,7 @@ public class Main {
         String pathToPoints = "src/pointsInput.txt";
         String pathToInitSolutions = "src/initSolutionsInput.txt";
 
-        EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.sixthExample(pathToPoints));
-        systemSolving.newtonsMethod(0.7);
+        EquationsSystemSolving systemSolving = new EquationsSystemSolving(pathToInitSolutions, EquationsSystemExamples.seventhExample(pathToPoints));
+        systemSolving.newtonsMethod(0.9);
     }
-
-    // create MathPackage
-    // make up the UI for actions with math operations include linear programming
 }
