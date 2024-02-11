@@ -414,6 +414,26 @@ public class Matrix {
             this.setItem(i, indexChangeWith, tmpCol);
         }
     }
+    public Matrix gaussianTransform()
+    {
+        Matrix cloneMatrix = this.cloneMatrix();
+        for (int k = 0; k < cloneMatrix.getRowsCount() - 1; k++)
+            for (int i = k + 1; i < cloneMatrix.getRowsCount(); i++)
+            {
+                if (cloneMatrix.getItem(k, k) == 0)
+                {
+                    for (int l = i; l < cloneMatrix.getRowsCount(); l++)
+                    {
+                        if (cloneMatrix.getItem(l, l) != 0) {cloneMatrix.swapRow(k, l);}
+                        else System.out.println(Main.ERROR + "Ошибка! Деление на ноль, невозможно посчитать определитель" + Main.RESET);
+                    }
+                }
+                double tmp = cloneMatrix.getItem(i, k) / cloneMatrix.getItem(k, k);
+                for (int j = k; j < cloneMatrix.getColumnsCount(); j++)
+                { cloneMatrix.getMatrix()[i][j] -= tmp * cloneMatrix.getItem(k, j); }
+            }
+        return cloneMatrix;
+    }
     double gaussianDeterminant()
     {
         double[][] copyMatrix = new double[this.rowsCount][this.columnsCount];
